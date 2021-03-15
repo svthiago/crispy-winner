@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+
+  database:
+    container_name: postgres
+    image: postgres:latest
+    env_file: database.conf
+    networks:
+      - backend
+    restart: on-failure
+    ports:
+      - 5432:5432
+    volumes:
+      - db_volume:/var/lib/postgresql
+
+  carford:
+    build:
+      context: ./carford
+    networks:
+      - backend
+    restart: on-failure
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_APP=app:app 
+    volumes:
+      - ./carford:/code:rw
+
+volumes:
+  db_volume:
+
+networks:
+  backend:
+    driver: bridge
