@@ -1,2 +1,4 @@
 # crispy-winner
-Flask-Restful SQLAlchemy and PostgreSQL CRUD example
+A basic car dealership system
+
+Flask-Restful SQLAlchemy and PostgreSQL
